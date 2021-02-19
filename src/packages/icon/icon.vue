@@ -1,7 +1,15 @@
 <template>
-  <div class="PanIcon">PanIcon</div>
+  <svg class="icon" aria-hidden="true">
+    <use :xlink:href="`#icon${icon}`"></use>
+  </svg>
 </template>
 
 <script>
-export default { name: 'PanIcon' }
+import './iconfont'
+export default {
+  name: 'PanIcon',
+  props: {
+    icon: String
+  }
+}
 </script>

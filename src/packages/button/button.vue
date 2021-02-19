@@ -1,9 +1,16 @@
 <template>
-  <button :class="classs">PanButton</button>
+  <button :class="classs" :disabled="loading">
+    <pan-icon v-if="icon" :icon="icon" />
+    <pan-icon v-if="loading" icon="loading" />
+    <span v-if="$slots.default">
+      <slot></slot>
+    </span>
+  </button>
 </template>
 
 <script>
 import { computed } from 'vue'
+
 export default {
   name: 'PanButton',
   props: {
@@ -18,6 +25,11 @@ export default {
         }
         return true
       }
+    },
+    icon: String,
+    loading: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props) {
