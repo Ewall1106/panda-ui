@@ -1,0 +1,4 @@
+@include b(button) {
+  @include status($theme-colors);
+  border: 0;
+}

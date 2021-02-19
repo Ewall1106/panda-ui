@@ -1,4 +1,8 @@
-import { createApp } from "vue";
-import App from "./App.vue";
+import { createApp } from 'vue'
+import App from './App.vue'
 
-createApp(App).mount("#app");
+import PandaUI from './packages'
+
+createApp(App)
+  .use(PandaUI)
+  .mount('#app')

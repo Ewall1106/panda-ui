@@ -1,0 +1,16 @@
+$namespace: 'pan';
+
+@mixin b($block) {
+  $B: $namespace + '-' + $block !global;
+  .#{$B} {
+    @content;
+  }
+}
+
+@mixin status($color) {
+  @each $key, $value in $color {
+    &.#{$B}-#{$key} {
+      background: #{$value};
+    }
+  }
+}
