@@ -14,9 +14,16 @@
   transition: all 0.3s linear;
   transform: translateX(100%);
 }
+.carousel-enter-active.reverse {
+  transition: all 0.3s linear;
+  transform: translateX(-100%);
+}
 /* 定义动画结束时最后一帧的状态 */
 /* 如果本身颜色是red 那么动画结束后还是会为红色 */
 .carousel-enter-to {
+  transform: translateX(0);
+}
+.carousel-enter-to.reverse {
   transform: translateX(0);
 }
 
@@ -26,7 +33,14 @@
   transition: all 0.3s linear;
   transform: translateX(0);
 }
+.carousel-leave-active.reverse {
+  transition: all 0.3s linear;
+  transform: translateX(0);
+}
 /* 定义动画离开的最后一帧初始状态 */
 .carousel-leave-to {
   transform: translateX(-100%);
+}
+.carousel-leave-to.reverse {
+  transform: translateX(100%);
 }

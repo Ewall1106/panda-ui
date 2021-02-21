@@ -3,11 +3,20 @@
     <div class="view-port">
       <slot></slot>
     </div>
+    <div class="view-dots">
+      <span
+        v-for="(item, idx) in len"
+        :key="idx"
+        :class="{ active: item - 1 === currentSelected }"
+        @click="go(item - 1)"
+        >{{ item }}{{ item }}{{ item }}</span
+      >
+    </div>
   </div>
 </template>
 
 <script>
-import { computed, onMounted, provide, reactive, toRefs } from 'vue'
+import { computed, nextTick, onMounted, provide, reactive, toRefs } from 'vue'
 
 export default {
   name: 'PanCarousel',
@@ -38,10 +47,12 @@ export default {
     }
   },
   setup(props) {
+    let timer
     const state = reactive({
       currentIndex: 0,
       len: 0, // item个数
-      currentSelected: props.initialIndex
+      currentSelected: props.initialIndex,
+      reverse: false
     })
 
     const changeIndex = () => {
@@ -60,7 +71,7 @@ export default {
     const methods = {
       run() {
         if (props.autoplay) {
-          setInterval(() => {
+          timer = setInterval(() => {
             let index = state.currentSelected
             let newIndex = index + 1
             methods.go(newIndex)
@@ -68,10 +79,23 @@ export default {
         }
       },
       go(newIndex) {
+        let index = state.currentSelected
         if (newIndex === state.len) newIndex = 0
         if (newIndex === -1) newIndex = state.len - 1
+        state.reverse = newIndex > index ? false : true
 
-        state.currentSelected = newIndex
+        if (timer && props.loop) {
+          if (index === 0 && newIndex === state.len - 1) {
+            state.reverse = true
+          }
+          if (index === state.len - 1 && newIndex === 0) {
+            state.reverse = false
+          }
+        }
+
+        nextTick(() => {
+          state.currentSelected = newIndex
+        })
       }
     }
 
@@ -82,7 +106,8 @@ export default {
 
     return {
       styles,
-      ...toRefs(state)
+      ...toRefs(state),
+      ...methods
     }
   }
 }

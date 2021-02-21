@@ -10,4 +10,13 @@
     overflow: hidden;
     position: relative;
   }
+  .view-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 0);
+    .active {
+      background: #fff;
+    }
+  }
 }

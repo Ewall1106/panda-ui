@@ -1,6 +1,6 @@
 <template>
   <transition name="carousel">
-    <div class="pan-carousel-item" v-if="isVisible">
+    <div class="pan-carousel-item" v-if="isVisible" :class="classs">
       <slot></slot>
     </div>
   </transition>
@@ -11,25 +11,6 @@ import { computed, inject } from 'vue'
 
 export default {
   name: 'PanCarouselItem',
-  props: {
-    // type: {
-    //   type: String,
-    //   default: 'primary',
-    //   validator(value) {
-    //     if (
-    //       !['primary', 'success', 'info', 'danger', 'warning'].includes(value)
-    //     ) {
-    //       throw new Error('Props type error')
-    //     }
-    //     return true
-    //   }
-    // },
-    // icon: String,
-    // loading: {
-    //   type: Boolean,
-    //   default: false
-    // }
-  },
   setup() {
     let { state, changeIndex } = inject('current')
 
@@ -39,10 +20,13 @@ export default {
       return state.currentSelected === currentIndex
     })
 
+    let classs = computed(() => [state.reverse ? 'reverse' : ''])
+
     changeIndex()
 
     return {
-      isVisible
+      isVisible,
+      classs
     }
   }
 }
