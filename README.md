@@ -1,35 +1,6 @@
-# panda-ui
+# PandaUI
 
-## Project setup
+## Plan
 
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-
-```
-yarn build
-```
-
-### Run your unit tests
-
-```
-yarn test:unit
-```
-
-### Lints and fixes files
-
-```
-yarn lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- 使用 sfc 的形式完成第 1 版组件
+- 使用 tsx 完成第 2 版组件

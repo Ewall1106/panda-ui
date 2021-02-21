@@ -1,0 +1,32 @@
+@import '../../styles';
+
+@include b(carousel-item) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* --- 进入动画 --- */
+/* 定义动画过渡 */
+.carousel-enter-active {
+  transition: all 0.3s linear;
+  transform: translateX(100%);
+}
+/* 定义动画结束时最后一帧的状态 */
+/* 如果本身颜色是red 那么动画结束后还是会为红色 */
+.carousel-enter-to {
+  transform: translateX(0);
+}
+
+/* --- 离开动画 --- */
+/* 定义动画过渡 */
+.carousel-leave-active {
+  transition: all 0.3s linear;
+  transform: translateX(0);
+}
+/* 定义动画离开的最后一帧初始状态 */
+.carousel-leave-to {
+  transform: translateX(-100%);
+}
