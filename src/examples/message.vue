@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="show">click</button>
+    <button @click="show">Message</button>
   </div>
 </template>
 
