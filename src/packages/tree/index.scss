@@ -1,4 +1,9 @@
 @import '../../styles';
 
 @include b(tree) {
+  .pan-tree-no-expand {
+    .pan-icon {
+      visibility: hidden;
+    }
+  }
 }
