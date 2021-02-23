@@ -1,5 +1,5 @@
 import PanTreeNode from './tree-node'
-
+import { getCurrentInstance } from 'vue'
 export default {
   name: 'PanTree',
   components: {
@@ -17,6 +17,11 @@ export default {
         return <div>nothing</div>
       }
       return data.map(item => <pan-tree-node data={item} />)
+    }
+
+    const instance = getCurrentInstance()
+    instance.ctx.onMyCustomMethod = function() {
+      console.log('hello world')
     }
 
     // function renderChild(item) {

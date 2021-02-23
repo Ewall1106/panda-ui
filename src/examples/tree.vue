@@ -1,12 +1,13 @@
 <template>
-  <pan-tree :data="treeData">primary</pan-tree>
+  <pan-tree :data="treeData" ref="root">primary</pan-tree>
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue'
+import { reactive, toRefs, ref, onMounted } from 'vue'
 
 export default {
   setup() {
+    const root = ref(null)
     const state = reactive({
       treeData: [
         {
@@ -39,8 +40,13 @@ export default {
       ]
     })
 
+    onMounted(() => {
+      // DOM元素将在初始渲染后分配给ref
+      console.log(root.value.onMyCustomMethod()) // <div>这是根元素</div>
+    })
     return {
-      ...toRefs(state)
+      ...toRefs(state),
+      root
     }
   }
 }
